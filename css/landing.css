@@ -1,0 +1,142 @@
+/*
+font-family: 'Roboto', sans-serif;
+font-family: 'Lilita One', cursive;
+*/
+body {
+height: 100vh;
+background: #F8D353;
+background: -webkit-radial-gradient(center, #F8D353, #CA8429);
+background: -moz-radial-gradient(center, #F8D353, #CA8429);
+background: radial-gradient(ellipse at center, #F8D353, #CA8429);
+}
+a,a:hover{text-decoration: none; color: inherit;}
+.bg-landing {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.grid-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1540px;
+    margin: 5% auto;
+}
+
+.grid-center h1 {
+    color: #462c1d;
+    text-align: center;
+    font-size: 9em;
+    letter-spacing: .1em;
+    margin: 20px 0 40px;
+    text-shadow: 2px 5px 5px #713D0F;
+}
+
+.center-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagearea {
+    width: 570px;
+}
+
+.btn {
+    text-transform: uppercase;
+    width: 300px;
+    height: 80px;
+    background-color: #E8B945;
+    padding: 20px;
+    border: 2px solid #6B380E;
+    color: #462c1d;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 20px 0;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    vertical-align: center;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.btn:hover {
+    color: #F8D353;
+    background-color: #6B380E;
+}
+
+.float-left {
+    float: left;
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 0;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.info li {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #6B380E;
+    margin: 0 2px;
+}
+
+
+/* Media Queries */
+@media (max-width: 800px) {
+    .grid-center h1 {
+        font-size: 7em;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid-center h1 {
+        font-size: 5.5em;
+    }
+
+    .imagearea {
+        width: 470px;
+    }
+
+    .btn {
+        width: 250px;
+        height: 70px;
+        font-size: 1.3em
+    }
+}
+
+@media (max-width: 475px) {
+    .grid-center h1 {
+        font-size: 3.8em;
+    }
+
+    .imagearea {
+        width: 330px;
+    }
+
+    .info {
+        font-size: .9em;
+    }
+}

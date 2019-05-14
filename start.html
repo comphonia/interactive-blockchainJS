@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Alchemy | Comphonia</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/start.css" type="text/css">
+</head>
+
+<body>
+   <a href="https://github.com/you"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" style="position: absolute; right: 0;"></a>
+    <div class="topbar">
+        <h3>ALCHEMY</h3>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-top: 2%">
+            <div class="col1">
+                <div class="card" disabled>
+                    <div class="imagearea center-row">
+                        <img src="imgs/female%20(30).png">
+                    </div>
+                    <h2>Alice</h2>
+                    <h1><i class="fab fa-bitcoin"></i>100</h1>
+                    <div class="buttons">
+                        <input type="text" id="alicePay" />
+                        <button class="btn request">pay</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col2">
+                <div class="transactions">
+                    <div class="titlebar"> <span>&gt;&gt; console</span><span id="consoleTime"></span></div>
+                    <div class="log">
+                        <p>Lorem900</p>
+                    </div>
+                </div>
+                <div class="miner center-col">
+                    <div class="imagearea">
+                        <img src="imgs/male%20(41).png">
+                    </div>
+                    <h2>Miner49er</h2>
+                    <h1><i class="fab fa-bitcoin"></i>100</h1>
+                    <button class="btn"><i class="fas fa-hammer float-left"></i>mine</button>
+                </div>
+            </div>
+            <div class="col1">
+                <div class="card">
+                    <div class="imagearea center-row">
+                        <img src="imgs/male%20(23).png">
+                    </div>
+                    <h2>Bob</h2>
+                    <h1><i class="fab fa-bitcoin"></i>100</h1>
+                    <div class="buttons">
+                        <input type="text" id="bobPay" />
+                        <button class="btn request">pay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blockchain">
+            <div class="info">
+                <small style="display: block">Block Info:</small>
+                <small style="display: block" id="block-info"></small>
+            </div>
+            <div class="blockarea ">
+                <div class="block">
+                    <i class="fas fa-cube"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/libs/moment.js"></script>
+    <script src="js/libs/crypto-js.js"></script>
+    <script src="js/libs/crypto-js256.js"></script>
+    <script src="js/start.js"></script>
+        <script src="js/blockchain.js"></script>
+
+    <script>
+        var time = document.getElementById('consoleTime');
+        setInterval(function() {
+            time.textContent = moment().format('h:mm:ss a');
+        }, 1000);
+    </script>
+</body></html>
