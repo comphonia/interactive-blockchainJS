@@ -10,6 +10,15 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+button,
+input,
+select,
+button:focus,
+input:focus,
+select:focus {
+    outline: none;
+}
+
 .center-col {
     display: flex;
     flex-direction: column;
@@ -28,6 +37,7 @@ body {
     width: 100%;
     height: 50px;
     padding: 10px;
+    margin: 0 auto;
     text-align: center;
     background: rgba(255, 255, 255, 0.1)
 }
@@ -42,9 +52,9 @@ body {
 }
 
 .container {
-    margin: 25px auto;
-    width: 90%;
-    max-width: 1500px;
+    margin: auto;
+    width: 100%;
+    max-width: 1900px;
     padding: 0 15px;
 }
 
@@ -55,12 +65,12 @@ body {
 
 .col1,
 .col2 {
-    margin: 15px;
-    flex: 0 0 350px;
+    margin: 15px 15px;
+    flex: 0 0 300px;
 }
 
 .col2 {
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 .transactions,
@@ -76,25 +86,30 @@ body {
     border: 2px solid #462c1d;
     box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.5);
     word-wrap: break-word;
+
 }
 
 .titlebar {
     margin: -16px;
     padding: 5px;
+    height: 30px;
     background-color: goldenrod;
     font-weight: 700;
     text-transform: uppercase;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .log {
-    margin-top: 20px;
+    margin: 16px -15px 0;
     overflow: auto;
     height: 100%;
+    padding-left: 10px;
+    word-wrap: break-word;
 }
 
 .log p::before {
@@ -109,7 +124,7 @@ body {
 
 .miner {
     width: 300px;
-    height: 200px;
+    height: 230px;
     margin: 30px auto;
     background-color: whitesmoke;
     border-radius: 10px;
@@ -138,11 +153,17 @@ body {
     align-items: center;
 }
 
-.miner .btn:hover {
+.miner .btn:hover:enabled {
     color: #F8D353;
     background-color: #6B380E;
 }
 
+.miner select {
+    padding: 5px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    color: #444;
+}
 
 .card {
     border-radius: 10px;
@@ -230,8 +251,15 @@ body {
     margin: 0 4px;
     box-shadow: inset 0 -5px 2px rgba(255, 255, 255, 0.1);
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    cursor: pointer;
     border-radius: 10px;
+}
+
+.btn:hover:enabled {
+    cursor: pointer;
+}
+
+.btn:hover:disabled {
+    cursor: not-allowed;
 }
 
 .btn.request {
@@ -239,7 +267,7 @@ body {
     color: #fff;
 }
 
-.btn.request:hover {
+.btn.request:hover:enabled {
     background-color: #00bfa5;
     color: #fff;
 }
@@ -250,7 +278,7 @@ body {
     color: #fff;
 }
 
-.btn.send:hover {
+.btn.send:hover:enabled {
     background-color: #f44336;
     color: #fff;
 }
@@ -303,26 +331,34 @@ body {
     box-shadow: inset 0 1px 15px rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    word-wrap: break-word;
 }
 
 .blockchain:hover .info {
     opacity: 1;
 }
 
-
-/*Media Queries*/
-@media (max-width: 1320px) {
-    .col2 {
-        order: 2;
-        margin: 15px 0;
-    }
-
+#blockinfo br{
+    margin: 0;
 }
 
-@media (max-width: 1280px) {
+
+
+/*Media Queries*/
+@media (max-width: 1480px) {
+    .col2 {
+        order: 2;
+
+    }
+}
+
+@media (max-width: 1390px) {
+
     .col1 {
         flex-basis: calc(1 / 2 * 95%);
-        margin: 15px 10px;
+        margin: 15px 0;
+        margin-top: 55px;
+
     }
 
     .col1:first-child {
@@ -333,15 +369,23 @@ body {
 @media (max-width: 795px) {
     .col1 {
         flex-basis: 100%;
-        margin: 15px 0;
-    }
-    .container{
-        width: 100;
-        padding: 0;
+        margin: 15px auto;
     }
 
-.col2 {
-    flex: 0 0 100%;
-}
+    .col1:first-child {
+        margin-top: 55px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .col2 {
+        flex: 0 0 0;
+        width: 100%;
+        margin: auto;
+       
+    }
 
 }

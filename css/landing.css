@@ -22,6 +22,7 @@ a,a:hover{text-decoration: none; color: inherit;}
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     max-width: 1540px;
     margin: 5% auto;
 }
