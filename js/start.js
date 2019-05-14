@@ -38,7 +38,7 @@ function consoleLog(msg) {
     p.textContent = moment().format('h:mm:ss a') + " -> " + msg
     aConsole.appendChild(p)
 
-    var elem = document.querySelector('.log');
+    let elem = document.querySelector('.log');
     elem.scrollTop = elem.scrollHeight;
 }
 
@@ -59,6 +59,11 @@ document.querySelector('#alice .btn').addEventListener('click', function () {
     demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Alice', 'wallet-Bob', parseInt(alicePayInput.value)))
     alicePayInput.value = '';
 })
+document.querySelector('#bob .btn').addEventListener('click', function () {
+    consoleLog("wallet-Bob initiated a transaction: Pay BTC" + alicePayInput.value + " to wallet-Alice")
+    demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Bob', 'wallet-Alice', parseInt(bobPayInput.value)))
+    bobPayInput.value = '';
+})
 document.querySelector('#miner .btn').addEventListener('click', function () {
     let setup = document.getElementById('hardware').value
     startMining(setup);
@@ -77,27 +82,29 @@ function startMining(setup) {
     }
 }
 
+
 //Update Chain UI
 var chain;
 var blockarea = document.getElementById('blockarea');
 
 function updateChainUI() {
     chain = demoCoin.chain
-    console.log(chain)
+    blockarea.innerHTML = ""
     for (let i = 0; i < chain.length; i++) {
         blockarea.innerHTML += `<div class="block" id="block-${i}">
                                 <i class="fas fa-cube"></i>
                                 </div>`;
     }
     var blocks = document.getElementsByClassName('block')
-    for(let i =0; i< blocks.length; i++){
-        blocks[i].addEventListener('mouseover',function(){
+    for (let i = 0; i < blocks.length; i++) {
+        blocks[i].addEventListener('mouseover', function () {
             showBlockProps(this.id);
         })
     }
+    blockarea.scrollLeft = blockarea.scrollWidth;
 }
 
-function showBlockProps(id){
-    id = id.replace(/block-/gi,"");
-    document.getElementById('blockinfo').innerHTML =JSON.stringify( chain[id],null,2)
+function showBlockProps(id) {
+    id = id.replace(/block-/gi, "");
+    document.getElementById('blockinfo').innerHTML = JSON.stringify(chain[id], null, 2)
 }
