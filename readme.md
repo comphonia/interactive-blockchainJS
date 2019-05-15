@@ -2,6 +2,8 @@
 
 You can find the high-level overview and some resources I used on [the wiki](https://github.com/comphonia/interactive-blockchainJS/wiki/Notes)
 
+Just the block chain implementation - [https://repl.it/@comphonia/jsblockchain](https://repl.it/@comphonia/jsblockchain)
+
 > note: This is just an interactive experience, the implementaiton here is on the client side and elements of the implementation have been adpated to fit the user experience. This is should not be adopted for a production blockchain application as-is.
 
  ### Dev-notes:
