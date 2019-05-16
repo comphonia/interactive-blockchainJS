@@ -16,5 +16,5 @@ Charging a fee for proof of work is not implemented, this can lead to spamming a
 - [ ] User balance is not reduced per transaction, this leads to a negative balance when multiple transactions are queued.
 - [ ] No visual mining feedback.
   
-  ## Documentation
+### Documentation
   ![](https://memegenerator.net/img/instances/63344723.jpg)
