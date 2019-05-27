@@ -4,16 +4,17 @@ You can find the high-level overview and some resources I used on [the wiki](htt
 
 Just the block chain implementation - [https://repl.it/@comphonia/jsblockchain](https://repl.it/@comphonia/jsblockchain)
 
-> note: This is just an interactive experience, the implementaiton here is on the client side and elements of the implementation have been adapted to fit the user experience. This is should not be adopted for a production blockchain application as-is.
+> note: This is just an interactive experience, the implementaiton here is on the client side and elements of the implementation have been adapted to fit the user experience. This should not be adopted for a production blockchain application as-is.
 
  ### Dev-notes:
 Nonces are usually fixed by the application and a change in setup/hardware does not change the nonce value as it is implemented in this application, a better hardware just means better processing power to solve the hash.
    
 Charging a fee for proof of work is not implemented, this can lead to spamming and DDOS
 
-### Known Issues
-- [ ] Genesis & Airdrop blocks UI not spawning onStart
-- [ ] User balance is not reduced per transaction, this leads to a negative balance when multiple transactions are queued.
+### To-do / Fix
+- [ ] Add an manual/on-boarding for new users.
+- [ ] Genesis & Airdrop blocks UI not added to the chain onStart.
+- [ ] User balance is not reduced per transaction, this leads to a negative balance when multiple transactions <= available balance are queued but their total in the transaction is more than the balance.
 - [ ] No visual mining feedback.
   
 ### Documentation
