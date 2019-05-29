@@ -2,12 +2,13 @@
 font-family: 'Roboto', sans-serif;
 font-family: 'Lilita One', cursive;
 */
-body {
-    background: #F8D353;
-    background: -webkit-radial-gradient(center, #F8D353, #CA8429);
-    background: -moz-radial-gradient(center, #F8D353, #CA8429);
-    background: radial-gradient(ellipse at center, #F8D353, #CA8429);
+body,
+html {
     font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: auto;
+    position: relative;
+    background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
 }
 
 button,
@@ -35,7 +36,7 @@ select:focus {
 
 .topbar {
     width: 100%;
-    height: 50px;
+    height: 80px;
     padding: 10px;
     margin: 0 auto;
     text-align: center;
@@ -43,24 +44,37 @@ select:focus {
 }
 
 .topbar h3 {
-    margin: 0;
-    font-size: 1.5em;
+    margin-top: 15px;
+    font-size: 2em;
     color: #462c1d;
     text-align: center;
     letter-spacing: .1em;
-    text-shadow: 2px 5px 5px #713D0F;
 }
 
 .container {
-    margin: auto;
     width: 100%;
-    max-width: 1900px;
+    min-height: 100vh;
+    height: auto;
     padding: 0 15px;
+
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
+}
+
+.wrapper {
+    max-width: 2500px;
+    margin: 15px auto 0;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 700px;
+
 }
 
 .col1,
@@ -79,6 +93,7 @@ select:focus {
     height: 320px;
     background-color: whitesmoke;
     padding: 16px;
+    border: 1.5px solid #032B43;
 }
 
 .transactions {
@@ -93,7 +108,8 @@ select:focus {
     margin: -16px;
     padding: 5px;
     height: 30px;
-    background-color: goldenrod;
+    background-color: #264653;
+    color: #f5f5f5;
     font-weight: 700;
     text-transform: uppercase;
     display: flex;
@@ -166,7 +182,6 @@ select:focus {
 }
 
 .card {
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,6 +194,7 @@ select:focus {
     height: 80px;
     overflow: hidden;
     border-radius: 50%;
+    z-index: 5
 }
 
 .miner .imagearea {
@@ -246,7 +262,7 @@ select:focus {
     border: none;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 1.3em;
+    font-size: 1.15em;
     letter-spacing: 0.09em;
     margin: 0 4px;
     box-shadow: inset 0 -5px 2px rgba(255, 255, 255, 0.1);
@@ -294,13 +310,14 @@ select:focus {
 .blockchain {
     width: 100%;
     height: 80px;
-    background-color: #6B380E;
+    background-color: rgba(238, 238, 236, 0.8);
     padding: 15px 10px;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     position: relative;
-    margin: 15px 0;
+    border: 2px solid #462c1d;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.5);
+    margin: 50px 15px;
 }
 
 .block {
@@ -316,15 +333,14 @@ select:focus {
 }
 
 .blockchain .info {
-    min-width: 360px;
+    min-width: 300px;
     width: 30%;
     min-height: 50px;
     margin: 0 -10px;
     position: absolute;
     bottom: 80px;
-    left: 10px;
+    right: 10px;
     background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
     padding: 10px;
     font-family: Consolas, monaco, monospace;
     border: 2px solid #462c1d;
@@ -338,11 +354,264 @@ select:focus {
     opacity: 1;
 }
 
-#blockinfo br{
+#blockinfo br {
     margin: 0;
 }
 
+#canvas {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 98%;
+}
 
+#canvas canvas {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Modal Styles */
+
+.modal {
+    background-color: rgba(3, 43, 67, .7);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.modal-inner {
+    width: 90%;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 15px -2px rgba(0, 0, 0, 0.5);
+    max-width: 1500px;
+    max-height: 700px;
+    position: relative;
+    margin: 80px 0 30px;
+    transform: scale(0.5);
+    transition: transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-top {
+    height: 100px;
+    background-color: #032B43;
+    border-bottom: 1.5px solid #032B43;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.modal-top h2 {
+    color: #fff;
+    font-weight: 100;
+}
+
+.modal-top button {
+    padding: 2px 10px;
+    text-transform: uppercase;
+    background-color: #d91e18;
+    color: #fff;
+    border: none;
+    font-size: 2em;
+    width: 50px;
+}
+
+.modal-top button:hover {
+    cursor: pointer;
+    background-color: #f22613;
+}
+
+
+.modal-bottom {
+    height: 250px;
+    background-color: #f5f5f5;
+    border-top: 1.5px solid #999;
+    box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.3);
+    order: 1;
+    margin-top: auto;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.modal-bottom .data-queue {
+    width: 70%;
+    height: 100%;
+    border-right: 1.5px solid #999;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.modal-bottom .chip {
+    padding: 15px 10px 10px;
+    font-size: 1.5em;
+    flex: 0 0 calc(1 / 7 * 110%);
+    min-width: 100px;
+    height: 60px;
+    margin: 10px;
+    justify-content: space-around;
+    border: 1px solid #2A9D8F;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #444;
+    cursor: pointer;
+    position: relative;
+
+}
+.modal-bottom .chip:hover {
+    border-color: #d91e18;
+}
+
+.modal-bottom .chip span {
+    font-size: 0.6em;
+}
+
+.modal-bottom .chip .chip-close {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    background-color: transparent;
+    color: #d91e18;
+    border: none;
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-bottom .button {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.modal-bottom .button > .btn {
+    background-color: #2A9D8F;
+    color: #f5f5f5;
+    border-radius: 0;
+}
+
+.modal-bottom .button > .btn:hover {
+    background-color: #2abb9b;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal.show > .modal-inner {
+    transform: scale(1);
+}
+
+.database {
+    overflow-y: scroll;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 85%;
+    position: absolute;
+}
+
+.modal-guts {
+    height: 100%;
+    position: relative;
+
+}
+
+.searchArea {
+    width: 100%;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+
+}
+
+.searchBar {
+    width: 60%;
+    margin: auto;
+    height: 15%;
+    padding: 10px 0;
+    position: relative;
+}
+
+.searchBar input {
+    height: 100%;
+    width: 100%;
+    border: 2.5px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    font-size: 1.3em;
+    color: #999;
+}
+
+.searchBar input::placeholder {
+    color: #999;
+}
+
+.searchIcon {
+    position: absolute;
+    right: 15px;
+    color: #999;
+    font-size: 1.2em;
+    user-select: none;
+    pointer-events: none;
+}
+
+.data-card {
+    flex: 0 0 calc(1 / 10 * 110%);
+    border-radius: 5px;
+    height: 100px;
+    margin: 10px;
+    min-width: 100px;
+    color: #495057;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.data-card.active {
+    border: 2px solid #2A9D8F;
+}
+
+.data-card:hover {
+    box-shadow: 1px 2px 10px -2px rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+}
+
+.data-card .card-top {
+    font-size: 3em;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.data-card .card-top:hover {
+    background-color: #2A9D8F;
+    color: #f5f5f5;
+}
+
+.data-card .card-bottom {
+    padding: 5px 5px 10px;
+    width: 100%;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 
 /*Media Queries*/
 @media (max-width: 1480px) {
@@ -384,8 +653,8 @@ select:focus {
     .col2 {
         flex: 0 0 0;
         width: 100%;
-        margin: auto;
-       
+        margin: 15px auto;
+
     }
 
 }
