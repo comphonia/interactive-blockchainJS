@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="keywords" content="bitcoin, interactive, blockchain, JavaScript">
+    <meta name="keywords" content="forensics, interactive, blockchain, JavaScript">
     <meta name="author" content="Everistus Akpabio">
     <meta name="description" content="An implementation of blockchain technology">
-    <title>Alchemy | Comphonia</title>
+    <title>Bioshare | Comphonia</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="css/normalize.css" type="text/css">
@@ -25,15 +25,16 @@
         <div class="wrapper">
             <div class="row">
                 <div class="col1">
-                    <div class="card" id="alice">
+                    <div class="card">
+                        <h2>Alice</h2>
                         <div class="imagearea center-row">
                             <img src="imgs/female%20(30).png">
                         </div>
-                        <h2>Alice</h2>
-                        <h1><i class="fab fa-bitcoin"></i><span class="balance">0</span></h1>
-                        <div class="buttons">
-                            <input type="text" id="alicePay" />
-                            <button class="btn request">pay</button>
+                        <p>Crime Scene Invesitgator</p>
+                        <div class="buttons center-col">
+                            <button class="btn"><i class="fas fa-share-square"></i>
+                                <div>share evidence</div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -43,32 +44,22 @@
                         <div class="log" id="console">
                         </div>
                     </div>
-                    <!--
-                    <div class="miner center-col" id="miner">
-                        <div class="imagearea">
-                            <img src="imgs/male%20(41).png">
-                        </div>
-                        <h2>Miner49r</h2>
-                        <h1><i class="fab fa-bitcoin"></i><span class="balance">0</span></h1>
-                        <select id="hardware">
-                            <option value="5">SETUP - CPU (slowest)</option>
-                            <option value="4" selected>SETUP - GPU</option>
-                            <option value="1">SETUP - POOL</option>
-                        </select>
-                        <button class="btn"><i class="fas fa-hammer float-left"></i>mine</button>
-                    </div>
-                -->
                 </div>
                 <div class="col1">
-                    <div class="card" id="bob">
+                    <div class="card">
+                        <h2>Bob</h2>
                         <div class="imagearea center-row">
                             <img src="imgs/male%20(23).png">
                         </div>
-                        <h2>Bob</h2>
-                        <h1><i class="fab fa-bitcoin"></i><span class="balance">0</span></h1>
-                        <div class="buttons">
-                            <input type="text" id="bobPay" />
-                            <button class="btn request">pay</button>
+                        <p>Detective</p>
+                        <div class="buttons ">
+                            <button class="btn" style="background-color: #476476"><i class="fas fa-hdd"></i>
+                                <div>bio drive</div>
+                            </button>
+                        </div>
+                        <div class="nav">
+                            <button class="left"><i class="fas fa-chevron-left"></i></button>
+                            <button class="right"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -89,7 +80,7 @@
         </div>
     </div>
 
-    <div class="modal show">
+    <div class="modal ">
         <div class="modal-inner">
             <div class="modal-top center-row">
                 <h2>Alice's Database</h2>
@@ -99,7 +90,7 @@
                 <div class="data-queue">
                     <div class="chip">
                         <i class="fas fa-address-card" style="vertical-align: bottom"></i>
-                        <span>address-bookdddddddd</span>
+                        <span>address-book</span>
                         <button class="chip-close">&times;</button>
                     </div>
                 </div>
@@ -115,9 +106,15 @@
                     </div>
                 </div>
                 <div class="database">
-                    <div class="data-card center-col " title="address-book">
+                    <div class="data-card center-col">
                         <div class="card-top center-col "><i class="fas fa-address-card"></i></div>
                         <div class="card-bottom">address-book</div>
+                        <div class="popover">
+                            <h4>address-book</h4>
+                            <p>data from address-book found on a crime scene.</p>
+                            <hr />
+                            <p>already synced with bob</p>
+                        </div>
                     </div>
 
                 </div>

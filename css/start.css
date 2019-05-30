@@ -20,6 +20,7 @@ select:focus {
     outline: none;
 }
 
+button:hover{cursor: pointer;}
 .center-col {
     display: flex;
     flex-direction: column;
@@ -138,54 +139,13 @@ select:focus {
     padding: 10px 0;
 }
 
-.miner {
-    width: 300px;
-    height: 230px;
-    margin: 30px auto;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    padding: 15px;
-    position: relative;
-    border: 2px solid #6B380E;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.miner .btn {
-    background-color: #E8B945;
-    color: #462c1d;
-    border: 2px solid #6B380E;
-    font-weight: 700;
-    text-align: center;
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    vertical-align: center;
-    display: inline-flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.miner .btn:hover:enabled {
-    color: #F8D353;
-    background-color: #6B380E;
-}
-
-.miner select {
-    padding: 5px;
-    border: 1px solid #999;
-    border-radius: 10px;
-    color: #444;
-}
 
 .card {
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 15px 12px -10px rgba(0, 0, 0, 0.5);
+    position: relative;
     justify-content: space-between;
 }
 
@@ -197,64 +157,6 @@ select:focus {
     z-index: 5
 }
 
-.miner .imagearea {
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    border-radius: 50%;
-    position: absolute;
-    top: -15px;
-}
-
-.miner .imagearea img {
-    object-fit: cover;
-    width: 100%;
-}
-
-
-.card h2,
-.miner h2 {
-    color: #555;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-    margin: 10px 0;
-    font-size: 1.9em;
-    text-align: center;
-}
-
-.card h1,
-.miner h1 {
-    color: #555;
-    letter-spacing: 0.1em;
-    font-weight: 400;
-    margin: 2px 0;
-    margin-bottom: 10px;
-
-}
-
-.card h1 i,
-.miner h1 i {
-    color: goldenrod;
-    font-weight: 700;
-}
-
-.buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.card input[type="text"] {
-    border-radius: 10px;
-    border: 2px solid #009688;
-    width: 150px;
-    box-shadow: inset 0 5px 2px rgba(0, 0, 0, 0.3);
-    font-size: 1.5em;
-    font-weight: 100;
-    color: #777;
-    padding: 10px;
-    text-align: right;
-}
 
 .btn {
     width: 130px;
@@ -270,34 +172,72 @@ select:focus {
     border-radius: 10px;
 }
 
-.btn:hover:enabled {
+
+
+.card h2 {
+    color: #555;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin: 10px 0;
+    font-size: 1.9em;
+    text-align: center;
+}
+
+.card p {
+    color: #555;
+    font-weight: 400;
+    margin: 10px 0;
+    font-size: 1.3em;
+}
+
+.nav button {
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 1.3em;
+    top: 30%;
+    transform: translateY(50%);
+}
+
+.nav button:hover {
+    background-color: #000;
+}
+
+.nav .left {
+    left: 0;
+}
+
+.nav .right {
+    right: 0;
+}
+
+.buttons .btn {
+    height: 100px;
+    border-radius: 0;
+    background-color: #2A9D8F;
+    color: #f5f5f5;
+}
+
+.buttons .btn:hover {
     cursor: pointer;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
-.btn:hover:disabled {
-    cursor: not-allowed;
+.buttons .btn .fas {
+    font-size: 1.5em;
 }
 
-.btn.request {
-    background-color: #009688;
-    color: #fff;
-}
-
-.btn.request:hover:enabled {
-    background-color: #00bfa5;
-    color: #fff;
+.buttons .btn div {
+    font-size: .8em;
+    margin-top: 10px;
 }
 
 
-.btn.send {
-    background-color: #d50000;
-    color: #fff;
-}
 
-.btn.send:hover:enabled {
-    background-color: #f44336;
-    color: #fff;
-}
+
 
 .blockarea {
     /*    overflow-x: scroll;*/
@@ -375,6 +315,10 @@ select:focus {
 }
 
 /* Modal Styles */
+.modal.show {
+    opacity: 1;
+    pointer-events: all;
+}
 
 .modal {
     background-color: rgba(3, 43, 67, .7);
@@ -383,11 +327,12 @@ select:focus {
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 100;
     display: flex;
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 100;
 }
 
 .modal-inner {
@@ -476,6 +421,7 @@ select:focus {
     position: relative;
 
 }
+
 .modal-bottom .chip:hover {
     border-color: #d91e18;
 }
@@ -494,6 +440,7 @@ select:focus {
     font-size: 1em;
     margin: 0;
     padding: 0;
+    pointer-events: none;
 }
 
 .modal-bottom .button {
@@ -511,9 +458,7 @@ select:focus {
     background-color: #2abb9b;
 }
 
-.modal.show {
-    opacity: 1;
-}
+
 
 .modal.show > .modal-inner {
     transform: scale(1);
@@ -579,16 +524,20 @@ select:focus {
     min-width: 100px;
     color: #495057;
     cursor: pointer;
-    overflow: hidden;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+
+.data-card:hover,
 .data-card.active {
-    border: 2px solid #2A9D8F;
+    box-shadow: 1px 2px 10px -2px rgba(0, 0, 0, 0.5);
+    background-color: #2A9D8F;
+    color: #f5f5f5;
 }
 
-.data-card:hover {
-    box-shadow: 1px 2px 10px -2px rgba(0, 0, 0, 0.5);
-    background-color: #fff;
+.data-card:hover > .popover {
+    opacity: 1;
 }
 
 .data-card .card-top {
@@ -596,12 +545,6 @@ select:focus {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.data-card .card-top:hover {
-    background-color: #2A9D8F;
-    color: #f5f5f5;
 }
 
 .data-card .card-bottom {
@@ -611,6 +554,47 @@ select:focus {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.data-card .popover {
+    min-width: 100px;
+    max-width: 180px;
+    min-height: 100px;
+    position: absolute;
+    background-color: #f5f5f5;
+    padding: 10px;
+    top: 0;
+    right: -100%;
+    opacity: 0;
+    pointer-events: none;
+    color: #444;
+    transition: opacity 0.2s;
+}
+
+.data-card .popover::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #f5f5f5 transparent transparent;
+
+}
+
+.data-card .popover h4 {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.data-card .popover p {
+    margin: 10px 0;
+    color: #777;
+    font-weight: 100;
+}
+
+.data-card .popover p:last-child {
+    font-size: 0.8em;
+    font-style: italic;
 }
 
 /*Media Queries*/
