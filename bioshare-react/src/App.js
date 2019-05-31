@@ -11,12 +11,14 @@ import Console from "./components/Console";
 import Ledger from "./components/Ledger";
 import Drive from "./components/Drive";
 
+const SHA256 = require("crypto-js/sha256");
+
 class App extends Component {
   state = {
     viewDrive: false,
     npcCounter: 0,
-    filteredList: [],
     driveSelection: [],
+    consoleEntries: ["secure peer-to-peer server initialized..."],
     playerData: [
       {
         id: "0",
@@ -27,18 +29,67 @@ class App extends Component {
         inventory: [
           {
             id: "0",
-            name: "wine-glass",
+            name: "wine glass",
             image: "fas fa-wine-glass-alt",
             desc: "forensic data collected from evidence at a crime scene",
             status: ""
           },
           {
             id: "1",
-            name: "user-injured",
+            name: "injured person",
             image: "fas fa-user-injured",
             desc: "biometrics from injured victim at a crime scene",
             status: ""
-          }
+          },
+          {
+            id: "2",
+            name: "fingerprint",
+            image: "fas fa-fingerprint",
+            desc: "biometrics from injured victim at a crime scene",
+            status: ""
+          },
+          {
+            id: "3",
+            name: "skull",
+            image: "fas fa-skull",
+            desc: "biometrics from injured victim at a crime scene",
+            status: ""
+          },
+          {
+            id: "4",
+            name: "stolen badge",
+            image: "fas fa-id-badge",
+            desc: "forensic data collected from evidence at a crime scene",
+            status: ""
+          },
+          {
+            id: "5",
+            name: "dna sample",
+            image: "fas fa-dna",
+            desc: "biometrics from injured victim at a crime scene",
+            status: ""
+          },
+          {
+            id: "6",
+            name: "last voicemail of a victim",
+            image: "fas fa-file-audio",
+            desc: "forensic data collected from evidence at a crime scene",
+            status: ""
+          },
+          {
+            id: "8",
+            name: "money",
+            image: "fas fa-money-bill-alt",
+            desc: "forensic data collected from evidence at a crime scene",
+            status: ""
+          },
+          {
+            id: "9",
+            name: "body tissue",
+            image: "fas fa-allergies",
+            desc: "biometrics from injured victim at a crime scene",
+            status: ""
+          },
         ]
       }
     ],
@@ -49,7 +100,15 @@ class App extends Component {
         type: "npc",
         title: "Detective",
         avatar: bobAvatar,
-        inventory: []
+        inventory: [
+          {
+            id: "7",
+            name: "wine-glass",
+            image: "fas fa-wine-glass-alt",
+            desc: "forensic data collected from evidence at a crime scene",
+            status: ""
+          }
+        ]
       },
       {
         id: "2",
@@ -60,6 +119,32 @@ class App extends Component {
         inventory: []
       }
     ]
+  };
+
+  shareDataHandler = data => {
+    let fromId = 0; //user
+    let toId = this.state.npcData[this.state.npcCounter].id;
+
+    // npcData with toId.inventory.push data
+    let tempNpcData = [...this.state.npcData];
+    let npcIndex = tempNpcData.findIndex(npc => npc.id === toId);
+
+    let entries = [...this.state.consoleEntries];
+    for (let dta of data) {
+      tempNpcData[npcIndex].inventory.push(dta); //mutates state in nested inventory due to shallow cloning, needs fixing :(
+      // add transaction
+      let text = `Alice shared ${dta.name} to ${
+        tempNpcData[npcIndex].name
+      } #hash: ${SHA256(dta.id)}`;
+      entries.push(text);
+    }
+    this.setState({ consoleEntries: entries });
+
+    this.toggleDriveHandler(0);
+  };
+
+  clearConsoleHandler = () => {
+    this.setState({ consoleEntries: [] });
   };
 
   prevNpcHandler = () => {
@@ -76,20 +161,28 @@ class App extends Component {
     }
   };
 
-  searchDatabase = (id, event) => {
-    event.preventDefault();
-    let data = [
-      ...this.state.playerData,
-      ...this.state.npcData
-    ];
+  //checks shared data between user and npc to prevent redundancy
+  isDataSharedHandler = data => {
+    let fromId = 0; //user
+    let toId = this.state.npcData[this.state.npcCounter].id;
 
-    let currdata = data.filter(dta => dta.id === id);
-    let searchData = currdata[0].inventory.filter(dta => dta.name.includes(event.target.value));
-    this.setState({ filteredList: searchData });
+    let tempPlayerData = [...this.state.playerData];
+    let playerIndex = tempPlayerData.findIndex(player => player.id === fromId);
+
+    let tempNpcData = [...this.state.npcData];
+    let npcIndex = tempNpcData.findIndex(npc => npc.id === toId);
+    if (
+      tempPlayerData[0].inventory.includes(data) &&
+      tempNpcData[npcIndex].inventory.includes(data)
+    ) {
+      return true;
+    }
+    return false;
   };
 
   driveProps = {};
 
+  //show the modal with correct user data
   toggleDriveHandler = id => {
     let visibility = !this.state.viewDrive;
     this.setState({ viewDrive: visibility });
@@ -99,7 +192,7 @@ class App extends Component {
       this.driveProps.id = currdata[0].id;
       this.driveProps.name = currdata[0].name;
       this.driveProps.type = currdata[0].type;
-      this.setState({filteredList : currdata[0].inventory})
+      this.driveProps.data = currdata[0].inventory;
     }
   };
 
@@ -122,7 +215,10 @@ class App extends Component {
                 btnClick={() => this.toggleDriveHandler(playerData.id)}
               />
               {/* console widget */}
-              <Console />
+              <Console
+                clearConsole={this.clearConsoleHandler}
+                consoleEntries={this.state.consoleEntries}
+              />
               {/* npc card */}
               <Card
                 name={npcData[counter].name}
@@ -147,11 +243,14 @@ class App extends Component {
         </div>
         <Drive
           name={this.driveProps.name}
-          data={this.state.filteredList}
+          userId={this.driveProps.id}
+          data={this.driveProps.data}
           type={this.driveProps.type}
-          btnClick={() => this.toggleDriveHandler(this.driveProps.id)}
+          toggleDrive={() => this.toggleDriveHandler(this.driveProps.id)}
           visibility={this.state.viewDrive}
-          onSearch = {(event)=>this.searchDatabase(this.driveProps.id,event)}
+          onSearch={event => this.searchDatabase(this.driveProps.id, event)}
+          shareData={this.shareDataHandler}
+          isDataShared={this.isDataSharedHandler}
         />
       </div>
     );

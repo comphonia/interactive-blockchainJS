@@ -347,6 +347,7 @@ button:hover{cursor: pointer;}
     transition: transform 0.5s ease;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 .modal-top {
@@ -457,6 +458,11 @@ button:hover{cursor: pointer;}
     background-color: #1d924e;
 }
 
+.modal-bottom .button > .btn.disabled{
+    opacity: 0.3;
+    pointer-events: none;
+}
+
 
 
 .modal.show > .modal-inner {
@@ -470,6 +476,7 @@ button:hover{cursor: pointer;}
     flex-wrap: wrap;
     height: 85%;
     position: absolute;
+    
 }
 
 .modal-guts {
@@ -539,6 +546,17 @@ button:hover{cursor: pointer;}
     color: #f5f5f5;
 }
 
+.data-card.disabled{
+    opacity: 1;
+    box-shadow: none;
+    background-color: initial;
+    color: rgba(141, 139, 139, 0.616);
+}
+
+.data-card.disabled .popover p:last-child {
+ color: red;
+}
+
 .data-card.active > .popover{
     opacity: 0 !important;
 }
@@ -603,6 +621,7 @@ button:hover{cursor: pointer;}
 .data-card .popover p:last-child {
     font-size: 0.8em;
     font-style: italic;
+    color: #1d924e;
 }
 
 /*Media Queries*/
