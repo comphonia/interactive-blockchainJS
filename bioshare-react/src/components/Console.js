@@ -1,6 +1,5 @@
 import React from "react";
 import Time from "./Time";
-const moment = require('moment')
 
 const Console = (props) => {
     return (
@@ -17,7 +16,7 @@ const Console = (props) => {
           </div>
           <div className="log">
             {props.consoleEntries.map((entry,index) => {
-              return <p key={index}>{" -> " +  entry}</p>;
+              return <p key={index}>{entry}</p>;
             })}
           </div>
         </div>

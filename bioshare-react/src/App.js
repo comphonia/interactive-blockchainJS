@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import {Blockchain , Transaction} from './js/blockchain'
 
 const moment = require('moment')
+const loCloneDeep = require('lodash.clonedeep');
 
 class App extends Component {
   state = {
@@ -144,7 +145,7 @@ class App extends Component {
     let toId = this.state.npcData[this.state.npcCounter].id;
 
     // npcData with toId.inventory.push data
-    let tempNpcData = [...this.state.npcData];
+    let tempNpcData = loCloneDeep(this.state.npcData);
     let npcIndex = tempNpcData.findIndex(npc => npc.id === toId);
 
     let entries = [...this.state.consoleEntries];
