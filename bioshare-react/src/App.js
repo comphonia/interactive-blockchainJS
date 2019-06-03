@@ -12,8 +12,9 @@ import Ledger from "./components/Ledger";
 import Drive from "./components/Drive";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-
 import {Blockchain , Transaction} from './js/blockchain'
+
+const moment = require('moment')
 
 class App extends Component {
   state = {
@@ -21,7 +22,7 @@ class App extends Component {
     viewDrive: false,
     npcCounter: 0,
     driveSelection: [],
-    consoleEntries: ["secure peer-to-peer server initialized..."],
+    consoleEntries: [],
     playerData: [
       {
         id: "0",
@@ -128,7 +129,7 @@ class App extends Component {
 
   componentDidMount(){
     this.demoCoin = new Blockchain();
-    this.setState({chain: [...this.demoCoin.chain]});
+    this.setState({ consoleEntries:[moment().format("h:mm:ss a") + " -> secure peer-to-peer server initialized..."],chain: [...this.demoCoin.chain]});
   }
 
   //show toast notification
@@ -162,8 +163,9 @@ class App extends Component {
 
     
     this.demoCoin.createTransaction(new Transaction(Date.now(), 'drive-Alice', "drive-"+tempNpcData[npcIndex].name, parseInt(dataCount)))
-    console.log(this.demoCoin.chain)
     this.demoCoin.mineCurrentBlock('drive-Miner49r')
+
+    entries.push(moment().format("h:mm:ss a") + " -> " + this.demoCoin.newBlock.message)
 
     
     this.setState({ consoleEntries: entries , chain: [...this.demoCoin.chain]});

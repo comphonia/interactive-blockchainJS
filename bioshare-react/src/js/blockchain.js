@@ -16,6 +16,7 @@ class Block {
         this.previousHash = previousHash
         this.nonce = 0
         this.hash = this.calculateHash()
+        this.message = ""
     }
     //hash block contents to create a block header used in block linking
     calculateHash() {
@@ -23,13 +24,13 @@ class Block {
     }
     // proof of work
     mineBlock(difficulty) {
-       // let count = 0
+        let count = 0
         while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
             this.nonce++
-           // count++
+            count++
             this.hash = this.calculateHash()
         }
-     //   consoleLog("Block successfully hashed: (" + count + " iterations). Hash:" + this.hash)
+      this.message = "Block successfully hashed: (" + count + " iterations). Hash:" + this.hash
     }
 }
 
@@ -43,6 +44,7 @@ export class Blockchain {
         this.registeredAddresses = [
             'drive-Alice', 'drive-Bob', 'drive-Charlie', 'drive-Miner49r'
         ]
+        this.newBlock = null
        this.createGenesisBlock()
       //  this.airDropCoins(100)
     }
@@ -83,11 +85,11 @@ export class Blockchain {
 
 
 
-        let block = new Block(Date.now(), validatedTxns, this.getLatestBlock().hash)
-        block.mineBlock(diff || this.difficulty )
+        this.newBlock= new Block(Date.now(), validatedTxns, this.getLatestBlock().hash)
+        this.newBlock.mineBlock(diff || this.difficulty )
 
 
-        this.chain.push(block)
+        this.chain.push(this.newBlock)
 
         this.unminedTxns = [
             new Transaction(Date.now(), "mint", minerAddr, this.miningReward)

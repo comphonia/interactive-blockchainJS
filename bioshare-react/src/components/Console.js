@@ -17,7 +17,7 @@ const Console = (props) => {
           </div>
           <div className="log">
             {props.consoleEntries.map((entry,index) => {
-              return <p key={index}>{moment().format("h:mm:ss a") + " -> " +  entry}</p>;
+              return <p key={index}>{" -> " +  entry}</p>;
             })}
           </div>
         </div>
