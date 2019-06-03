@@ -57,7 +57,6 @@ button:hover{cursor: pointer;}
     min-height: 100vh;
     height: auto;
     padding: 0 15px;
-
 }
 
 .row {
@@ -261,14 +260,14 @@ button:hover{cursor: pointer;}
 
 .block {
     font-size: 3em;
-    color: #F8D353;
+    color: #462c1d;
     cursor: pointer;
     transition: color 0.3s ease-in-out;
     margin-left: 15px;
 }
 
 .block:hover {
-    color: #F1E400;
+    color: #af602e;
 }
 
 .blockchain .info {
@@ -278,8 +277,8 @@ button:hover{cursor: pointer;}
     margin: 0 -10px;
     position: absolute;
     bottom: 80px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
+    left: 90px;
+    background-color: rgba(255, 255, 255, 1);
     padding: 10px;
     font-family: Consolas, monaco, monospace;
     border: 2px solid #462c1d;
@@ -287,6 +286,7 @@ button:hover{cursor: pointer;}
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     word-wrap: break-word;
+    z-index: 2;
 }
 
 .blockchain:hover .info {

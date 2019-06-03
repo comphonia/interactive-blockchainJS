@@ -10,11 +10,14 @@ import Card from "./components/Card";
 import Console from "./components/Console";
 import Ledger from "./components/Ledger";
 import Drive from "./components/Drive";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
-const SHA256 = require("crypto-js/sha256");
+import {Blockchain , Transaction} from './js/blockchain'
 
 class App extends Component {
   state = {
+    chain:[],
     viewDrive: false,
     npcCounter: 0,
     driveSelection: [],
@@ -121,8 +124,22 @@ class App extends Component {
     ]
   };
 
+  demoCoin = null;
+
+  componentDidMount(){
+    this.demoCoin = new Blockchain();
+    this.setState({chain: [...this.demoCoin.chain]});
+  }
+
+  //show toast notification
+  notify = message => toast( message ,{
+    position:"bottom-right",
+    autoClose: 3000
+  });
+
+  //called when data is sent
   shareDataHandler = data => {
-    let fromId = 0; //user
+   // let fromId = 0;
     let toId = this.state.npcData[this.state.npcCounter].id;
 
     // npcData with toId.inventory.push data
@@ -130,15 +147,26 @@ class App extends Component {
     let npcIndex = tempNpcData.findIndex(npc => npc.id === toId);
 
     let entries = [...this.state.consoleEntries];
+    let dataCount = 0;
+
     for (let dta of data) {
       tempNpcData[npcIndex].inventory.push(dta); //mutates state in nested inventory due to shallow cloning, needs fixing :(
       // add transaction
       let text = `Alice shared ${dta.name} to ${
         tempNpcData[npcIndex].name
-      } #hash: ${SHA256(dta.id)}`;
-      entries.push(text);
+      }`;
+     // entries.push(text);
+     this.notify(text);
+     dataCount++;
     }
-    this.setState({ consoleEntries: entries });
+
+    
+    this.demoCoin.createTransaction(new Transaction(Date.now(), 'drive-Alice', "drive-"+tempNpcData[npcIndex].name, parseInt(dataCount)))
+    console.log(this.demoCoin.chain)
+    this.demoCoin.mineCurrentBlock('drive-Miner49r')
+
+    
+    this.setState({ consoleEntries: entries , chain: [...this.demoCoin.chain]});
 
     this.toggleDriveHandler(0);
   };
@@ -238,7 +266,7 @@ class App extends Component {
               </Card>
             </div>
             {/* ledger widget */}
-            <Ledger />
+            <Ledger chainData={this.state.chain} />
           </div>
         </div>
         <Drive
@@ -252,7 +280,9 @@ class App extends Component {
           shareData={this.shareDataHandler}
           isDataShared={this.isDataSharedHandler}
         />
+          <ToastContainer hideProgressBar />
       </div>
+      
     );
   }
 }

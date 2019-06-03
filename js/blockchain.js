@@ -27,7 +27,7 @@ class Block {
             count++
             this.hash = this.calculateHash()
         }
-        consoleLog("Block successfully hashed: (" + count + " iterations). Hash:" + this.hash)
+     //   consoleLog("Block successfully hashed: (" + count + " iterations). Hash:" + this.hash)
     }
 }
 
@@ -41,8 +41,8 @@ class Blockchain {
         this.registeredAddresses = [
             'wallet-Alice', 'wallet-Bob', 'wallet-Charlie', 'wallet-Miner49r'
         ]
-        this.createGenesisBlock()
-        this.airDropCoins(100)
+      //  this.createGenesisBlock()
+       // this.airDropCoins(100)
     }
 
     airDropCoins(coins) {
@@ -51,7 +51,7 @@ class Blockchain {
             this.unminedTxns.push(txn)
         }
        this.mineCurrentBlock('wallet-Miner49r')
-        consoleLog("Airdrop BTC100 to all users")
+       // consoleLog("Airdrop BTC100 to all users")
     }
 
     // initial block
@@ -59,7 +59,7 @@ class Blockchain {
         let txn = new Transaction(Date.now(), "mint", "genesis", 0)
         let block = new Block(Date.now(), [txn], "0")
         this.chain.push(block)
-        consoleLog("Genesis block created")
+       // consoleLog("Genesis block created")
     }
 
     //return the last block in the chain
@@ -74,10 +74,10 @@ class Blockchain {
                 validatedTxns.push(txn)
             } else if (this.validateTransaction(txn)) {
                 validatedTxns.push(txn)
-                consoleLog("Current Transaction from: " + txn.payerAddr + " to: " + txn.payeeAddr + " for: BTC" + txn.amount + " has been validated")
-            } else consoleLog("transaction from: " + txn.payerAddr + " is invalid, balance is less than BTC" + txn.amount)
+              //  consoleLog("Current Transaction from: " + txn.payerAddr + " to: " + txn.payeeAddr + " for: BTC" + txn.amount + " has been validated")
+            } 
         }
-        console.log("transactions validated: " + validatedTxns.length)
+       // console.log("transactions validated: " + validatedTxns.length)
 
 
 
@@ -144,34 +144,3 @@ class Blockchain {
 
 let demoCoin = new Blockchain()
 updateBalance()
-
-/*
-
-let demoCoin = new Blockchain()
-
-//1st block
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Alice', 'wallet-Bob', 500))
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Bob', 'wallet-Alice', 25))
-
-//console.log(demoCoin.unminedTxns)
-
-console.log("\n Mining a block")
-demoCoin.mineCurrentBlock('wallet-Miner49r')
-
-console.log("\nBalance: Alice: ", +demoCoin.getAddressBalance('wallet-Alice'))
-console.log("\nBalance: Bob: ", +demoCoin.getAddressBalance('wallet-Bob'))
-console.log("\nBalance: Miner49r: ", +demoCoin.getAddressBalance('wallet-Miner49r'))
-
-//2nd block
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Alice', 'wallet-Bob', 50))
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Bob', 'wallet-Alice', 25))
-
-//console.log(demoCoin.unminedTxns)
-
-console.log("\n Mining a block")
-demoCoin.mineCurrentBlock('wallet-Miner49r')
-updateBalance()
-console.log("\nBalance: Alice: ", +demoCoin.getAddressBalance('wallet-Alice'))
-console.log("\nBalance: Bob: ", +demoCoin.getAddressBalance('wallet-Bob'))
-console.log("\nBalance: Miner49r: ", +demoCoin.getAddressBalance('wallet-Miner49r'))
-*/

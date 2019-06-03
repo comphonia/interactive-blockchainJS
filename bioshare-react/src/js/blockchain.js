@@ -1,9 +1,11 @@
-class Transaction {
-    constructor(timestamp, payerAddr, payeeAddr, amount) {
+const SHA256 = require("crypto-js/sha256");
+
+export class Transaction {
+    constructor(timestamp, senderDrive, receiverDrive, fileCount) {
         this.timestamp = timestamp
-        this.payerAddr = payerAddr
-        this.payeeAddr = payeeAddr
-        this.amount = amount
+        this.senderDrive = senderDrive
+        this.receiverDrive = receiverDrive
+        this.fileCount = fileCount
     }
 }
 
@@ -17,32 +19,32 @@ class Block {
     }
     //hash block contents to create a block header used in block linking
     calculateHash() {
-        return CryptoJS.SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString()
+        return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString()
     }
     // proof of work
     mineBlock(difficulty) {
-        let count = 0
+       // let count = 0
         while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
             this.nonce++
-            count++
+           // count++
             this.hash = this.calculateHash()
         }
-        consoleLog("Block successfully hashed: (" + count + " iterations). Hash:" + this.hash)
+     //   consoleLog("Block successfully hashed: (" + count + " iterations). Hash:" + this.hash)
     }
 }
 
 //uses the Block class to create a linked blockchain
-class Blockchain {
+export class Blockchain {
     constructor() {
         this.chain = []
         this.difficulty = 1
         this.unminedTxns = []
         this.miningReward = 10
         this.registeredAddresses = [
-            'wallet-Alice', 'wallet-Bob', 'wallet-Charlie', 'wallet-Miner49r'
+            'drive-Alice', 'drive-Bob', 'drive-Charlie', 'drive-Miner49r'
         ]
-        this.createGenesisBlock()
-        this.airDropCoins(100)
+       this.createGenesisBlock()
+      //  this.airDropCoins(100)
     }
 
     airDropCoins(coins) {
@@ -50,8 +52,8 @@ class Blockchain {
             let txn = new Transaction(Date.now(), "mint", addr, coins)
             this.unminedTxns.push(txn)
         }
-       this.mineCurrentBlock('wallet-Miner49r')
-        consoleLog("Airdrop BTC100 to all users")
+       this.mineCurrentBlock('drive-Miner49r')
+       // consoleLog("Airdrop BTC100 to all users")
     }
 
     // initial block
@@ -59,7 +61,7 @@ class Blockchain {
         let txn = new Transaction(Date.now(), "mint", "genesis", 0)
         let block = new Block(Date.now(), [txn], "0")
         this.chain.push(block)
-        consoleLog("Genesis block created")
+       // consoleLog("Genesis block created")
     }
 
     //return the last block in the chain
@@ -70,14 +72,14 @@ class Blockchain {
     mineCurrentBlock(minerAddr,diff) {
         let validatedTxns = []
         for (const txn of this.unminedTxns) {
-            if (txn.payerAddr === "mint") {
+            if (txn.senderDrive === "mint") {
                 validatedTxns.push(txn)
             } else if (this.validateTransaction(txn)) {
                 validatedTxns.push(txn)
-                consoleLog("Current Transaction from: " + txn.payerAddr + " to: " + txn.payeeAddr + " for: BTC" + txn.amount + " has been validated")
-            } else consoleLog("transaction from: " + txn.payerAddr + " is invalid, balance is less than BTC" + txn.amount)
+              //  consoleLog("Current Transaction from: " + txn.senderDrive + " to: " + txn.receiverDrive + " for: BTC" + txn.amount + " has been validated")
+            } 
         }
-        console.log("transactions validated: " + validatedTxns.length)
+       // console.log("transactions validated: " + validatedTxns.length)
 
 
 
@@ -93,13 +95,15 @@ class Blockchain {
     }
 
     validateTransaction(txn) {
-        let payerAddr = txn.payerAddr
-        let balance = this.getAddressBalance(payerAddr)
+        //change to validate if user is in the system instead of balance, return true for simulation
+        return true;
+       /* let senderDrive = txn.senderDrive
+        let balance = this.getAddressBalance(senderDrive)
         if (balance >= txn.amount) {
             return true
         } else {
             return false
-        }
+        } */
     }
 
     createTransaction(txn) {
@@ -111,10 +115,10 @@ class Blockchain {
         let balance = 0
         for (const block of this.chain) {
             for (const txn of block.txns) {
-                if (txn.payerAddr === addr) {
+                if (txn.senderDrive === addr) {
                     balance -= txn.amount
                 }
-                if (txn.payeeAddr === addr) {
+                if (txn.receiverDrive === addr) {
                     balance += txn.amount
                 }
             }
@@ -142,36 +146,3 @@ class Blockchain {
 
 }
 
-let demoCoin = new Blockchain()
-updateBalance()
-
-/*
-
-let demoCoin = new Blockchain()
-
-//1st block
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Alice', 'wallet-Bob', 500))
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Bob', 'wallet-Alice', 25))
-
-//console.log(demoCoin.unminedTxns)
-
-console.log("\n Mining a block")
-demoCoin.mineCurrentBlock('wallet-Miner49r')
-
-console.log("\nBalance: Alice: ", +demoCoin.getAddressBalance('wallet-Alice'))
-console.log("\nBalance: Bob: ", +demoCoin.getAddressBalance('wallet-Bob'))
-console.log("\nBalance: Miner49r: ", +demoCoin.getAddressBalance('wallet-Miner49r'))
-
-//2nd block
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Alice', 'wallet-Bob', 50))
-demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Bob', 'wallet-Alice', 25))
-
-//console.log(demoCoin.unminedTxns)
-
-console.log("\n Mining a block")
-demoCoin.mineCurrentBlock('wallet-Miner49r')
-updateBalance()
-console.log("\nBalance: Alice: ", +demoCoin.getAddressBalance('wallet-Alice'))
-console.log("\nBalance: Bob: ", +demoCoin.getAddressBalance('wallet-Bob'))
-console.log("\nBalance: Miner49r: ", +demoCoin.getAddressBalance('wallet-Miner49r'))
-*/
