@@ -1,4 +1,9 @@
-# Alchemy - Blockchain Implementation
+# Bioshare - Blockchain Implementation
+
+Version 1 - [Alchemy](https://comphonia.com/playground/apps/alchemy/)
+Version 2 - [Bioshare](https://comphonia.com/playground/apps/alchemy/)
+
+> All updates below are for version 2.
 
 You can find the high-level overview and some resources I used on [the wiki](https://github.com/comphonia/interactive-blockchainJS/wiki/Notes)
 
@@ -13,9 +18,9 @@ Charging a fee for proof of work is not implemented, this can lead to spamming a
 
 ### To-do / Fix
 - [ ] Add an manual/on-boarding for new users.
-- [ ] Genesis & Airdrop blocks UI not added to the chain onStart.
-- [ ] User balance is not reduced per transaction, this leads to a negative balance when multiple transactions <= available balance are queued but their total in the transaction is more than the balance.
-- [ ] No visual mining feedback.
+- [x] Genesis & Airdrop blocks UI not added to the chain onStart.
+- [x] User balance is not reduced per transaction, this leads to a negative balance when multiple transactions <= available balance are queued but their total in the transaction is more than the balance. (not needed for v2)
+- [x] No visual mining feedback. (not needed for v2)
   
 ### Documentation
   ![](https://memegenerator.net/img/instances/63344723.jpg)
