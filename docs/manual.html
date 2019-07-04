@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bioshare Documentation | Comphonia</title>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="normalize.css" type="text/css">
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h2 style="margin-bottom: 0; ">Bioshare</h2>
+        <small style="margin-left: 3px">Documentation</small>
+        <ul class="side-links">
+            <li class=""><a href="overview.html">Overview</a></li>
+            <li class="active"><a href="manual.html">Manual</a></li>
+            <li><a href="implementation.html">Implementation</a></li>
+        </ul>
+        <div class="footer">Version 2.0</div>
+    </aside>
+    <main class="content">
+        <div class="header">
+            <div id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <h2 style=" text-align: center; color: #fff;">Bioshare</h2>
+            <div style="color:#fff">docs</div>
+        </div>
+        <!--Content Start-->
+        <h1>Gameplay Manual</h1>
+        <hr />
+        <h2>What is Bioshare?</h2>
+        <p><a href="https://comphonia.com/playground/apps/bioshare" style="display: inline">Bioshare</a> is a conceptualized data sharing system based on the private blockchain. It is meant to simulate how evidence can be shared between law enforcement.</p>
+        <p><strong><i>The problem</i></strong><br>
+            We share on receive data on a daily basis with no way of verifying who its original sender was or whether that data has been modified, this might not be a big deal on social media but for a data driven field such as forensic science, any change in evidence can be catastrophic; A forensic scientist has the power to exonerate as well as convict an accused person based on evidence alone.
+        </p>
+        <p><strong><i>The proposed solution</i></strong><br>
+            A secure data sharing application reinforced with blockchain technology. A forensic scientist should be able to go out in the field, collect biometric data, audio recordings, video samples, e.t.c and upload them securely to the server, the uploaded data will be parsed as binary and stored as an immutable, verifiable and dependable piece of information that can be shared across the network.
+        </p>
+        <h2>Components and Controls</h2>
+
+        <div class="clearfix">
+            <h3>Player</h3>
+            <figure>
+                <img src="imgs/alice.PNG" alt="player card">
+                <figcaption>User default character</figcaption>
+            </figure>
+            <p>By default you will be playing as Alice, A crime scene investigator who has already uploaded some data into her database. Click on the "share evidence" button do open up your drive to share data.</p>
+        </div>
+        <div class="clearfix">
+            <h3>NPC (Non-player Character)</h3>
+            <figure>
+                <img src="imgs/npc.PNG" alt="npc card">
+                <figcaption>Other users of the network</figcaption>
+            </figure>
+            <p>Use the arrow keys to see other users of the network, you also have the option to view the contents of their drive. All NPC drives are currently empty.</p>
+        </div>
+        <div class="clearfix">
+            <h3>Database</h3>
+            <figure>
+                <img src="imgs/database.PNG" alt="database" width="450">
+                <figcaption>database user interface</figcaption>
+            </figure>
+            <p>Use the search bar to find items, hover an item to see its description, click on it to add them to a queue, click on an item in queue to remove it and click on the send button to share selected data. </p>
+        </div>
+        <div class="clearfix">
+            <h3>Console</h3>
+            <figure>
+                <img src="imgs/console.PNG" alt="application console">
+                <figcaption>application console</figcaption>
+            </figure>
+            <p>The console logs every transaction in the application, it shows the state of the transaction and relays feedback to the user.</p>
+        </div>
+        <div class="clearfix">
+            <h3>Ledger</h3>
+            <figure>
+                <img src="imgs/ledger.PNG" alt="user image" width="450">
+                <figcaption>ledger with block info</figcaption>
+            </figure>
+            <p>The ledger shows a visual representation of the blockchain, every block of data is appended to the chain in chronological order with important metadata(data that describes data), this makes it easy to verify the source and validity of the block.</p>
+        </div>
+        <h2><a id="References_43"></a>Resources</h2>
+        <p style="margin-bottom: 55px; font-size: 0.9em">
+            <a href="https://comphonia.com/playground/apps/bioshare">Simulation Link</a></p>
+        <div style="height: 100px;"></div>
+
+        <!--Content End-->
+    </main>
+    <script>
+        let isToggle = true;
+
+        function toggleSidebar(val) {
+            isToggle = val | !isToggle;
+            if (!isToggle) {
+                document.getElementsByClassName('sidebar')[0].style.transform = 'translateX(-100%)';
+                document.getElementsByClassName('sidebar')[0].style.WebkitTransform = 'translateX(-100%)';
+                document.getElementsByClassName('sidebar')[0].style.msTransform = 'translateX(-100%)';
+                document.getElementsByClassName('content')[0].style.marginLeft = '0';
+                document.getElementsByClassName('content')[0].style.padding = '50px 15px';
+            } else {
+                document.getElementsByClassName('sidebar')[0].style.left = 'translateX(0)';
+                document.getElementsByClassName('sidebar')[0].style.WebkitTransform = 'translateX(0)';
+                document.getElementsByClassName('sidebar')[0].style.msTransform = 'translateX(0)';
+                document.getElementsByClassName('content')[0].style.marginLeft = '280px';
+                document.getElementsByClassName('content')[0].style.padding = '50px 40px';
+            }
+        }
+
+        document.getElementById('hamburger').addEventListener('click', function() {
+            toggleSidebar()
+        })
+
+        window.matchMedia("(max-width: 700px)").addListener(x => {
+            if (x.matches) {
+                toggleSidebar(false);
+            } else toggleSidebar(true);
+        })
+    </script>
+</body></html>

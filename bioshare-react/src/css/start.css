@@ -223,6 +223,10 @@ button:hover{cursor: pointer;}
 .nav button:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
+.nav button:disabled {
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
 
 .nav .left {
     left: 0;
@@ -474,6 +478,7 @@ button:hover{cursor: pointer;}
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
     height: 85%;
     position: absolute;
     

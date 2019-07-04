@@ -105,15 +105,7 @@ class App extends Component {
         type: "npc",
         title: "Detective",
         avatar: bobAvatar,
-        inventory: [
-          {
-            id: "7",
-            name: "wine-glass",
-            image: "fas fa-wine-glass-alt",
-            desc: "forensic data collected from evidence at a crime scene",
-            status: ""
-          }
-        ]
+        inventory: []
       },
       {
         id: "2",
@@ -145,7 +137,7 @@ class App extends Component {
     let toId = this.state.npcData[this.state.npcCounter].id;
 
     // npcData with toId.inventory.push data
-    let tempNpcData = loCloneDeep(this.state.npcData);
+    let tempNpcData = [...this.state.npcData];
     let npcIndex = tempNpcData.findIndex(npc => npc.id === toId);
 
     let entries = [...this.state.consoleEntries];
@@ -259,10 +251,10 @@ class App extends Component {
                 type={npcData[counter].type}
               >
                 <div className="nav">
-                  <button className="left" onClick={this.prevNpcHandler}>
+                  <button className="left" onClick={this.prevNpcHandler}  disabled={this.state.npcCounter <= 0}>
                     <i className="fas fa-chevron-left" />
                   </button>
-                  <button className="right" onClick={this.nextNpcHandler}>
+                  <button className="right" onClick={this.nextNpcHandler} disabled={this.state.npcCounter > 0}>
                     <i className="fas fa-chevron-right" />
                   </button>
                 </div>

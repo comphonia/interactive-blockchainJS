@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bioshare Documentation | Comphonia</title>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="normalize.css" type="text/css">
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h2 style="margin-bottom: 0; ">Bioshare</h2>
+        <small style="margin-left: 3px">Documentation</small>
+        <ul class="side-links">
+            <li class="active"><a href="overview.html">Overview</a></li>
+            <li class=""><a href="manual.html">Manual</a></li>
+            <li><a href="implementation.html">Implementation</a></li>
+        </ul>
+        <div class="footer">Version 2.0</div>
+    </aside>
+    <main class="content">
+        <div class="header">
+            <div id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <h2 style=" text-align: center; color: #fff;">Bioshare</h2>
+            <div style="color:#fff">docs</div>
+        </div>
+        <h1><a id="Implementing_Blockchain_using_JavaScript_0"></a>An Overview of Blockchain Technology</h1><hr/>
+        <h2><a id="What_is_Blockchain_1"></a>What is Blockchain?</h2>
+        <p>Blockchain technology is the new buzzword in the business world. It is a simply list of transactions called blocks, each block contains a reference to the previous block, a timestamp and its transaction data.</p>
+        <h2><a id="How_does_Blockchain_work_4"></a>How does Blockchain work?</h2>
+        <p>A Blockchain network is comprised of nodes, they all listen for transactions in the network, each node has a copy of the ledger (a register of chronological events that happened on the network), these events are broken down into blocks that contain a group of transactions. These blocks are linked in a way that one references the next.</p>
+        <p><strong><i>To further break this down for the layman;</i></strong><br>
+            Equate Blockchain technology to a ledger or a sign-in sheet, every person that signs in has to write their name, time and any other relevant information at the time of sign-in, each entry would be considered data or a block, every entry to the ledger does not overwrite the previous ones.</p>
+
+        <h2><a id="Securing_Blockchain_13"></a>Attributes of a Blockchain</h2>
+        <p>A properly implemented blockchain system needs to have some attributes before it is deployed, it must be secure, valid, true and relevant. Other features can be implemented such as immutability, verification and tracking to further strengthen the system.</p>
+        <h3><a id="Security_16"></a>Security</h3>
+        <p>All features below means nothing if the system is not secure, this is a priority. Secure databases, utilize encryption, integrate authorization &amp; authentication, among others.</p>
+        <h3><a id="Validation_18"></a>Validation</h3>
+        <p>Check if the user has the money to spend or data to share<br>
+            Prevent a double spend (utilizing the same currency before the initial transaction is completed)<br>
+            Disregard invalid transactions</p>
+        <h3><a id="Truthfulness_22"></a>Truthfulness</h3>
+        <p>Ensure truthfulness of a transaction with cryptographic signatures</p>
+        <h3><a id="Relevancy_24"></a>Relevancy</h3>
+        <p>Prevent Distributed Denial of Service (DDOS) attacks on the network by implementing a mechanism for charging per transaction. A fee in addition to proof of work and proof of stake can reduce spamming.</p>
+        <h3><a id="Immutability_26"></a>Immutability</h3>
+        <p>Ensure that blocks added to the chain can not be changed.</p>
+        <h3><a id="Verification_28"></a>Verification</h3>
+        <p>Add some sort of authentication to verify both the sender and receiver and be sure to store both their e-addresses.</p>
+        <i>Bioshare’s also implements a feature that prevents redundancy; data that is already available to both the sender and receiver cannot be shared again.</i>
+        <blockquote>
+            <p>Blockchain technology is just a concept, the implementation is up to you.</p>
+        </blockquote>
+        <h2><a id="Proof_of_work_35"></a>Proof of work</h2>
+        <p>Proof is an economic measure that prevents DDOS attacks and service abuses by requiring value from the miner. The work will be solving a cryptographic function (CPU cost function). The miner will have to utilize massive CPU/GPU cycles to find a nonce (repeatedly hashing a block and checking if the resulting value has a required number of zeros, determined by the difficulty level.)<br>
+            Proof of work mostly exists in public implementations of Blockchain, The proof is easy for verification but hard to generate so incentives are built into the system to reward miners who submit new blocks. The reward is the currency being mined, this currency also increases the supply to the network</p>
+        <h2><a id="References_43"></a>Resources</h2>
+        <p style="margin-bottom: 55px; font-size: 0.9em">
+            <a href="https://www.btcwires.com/round-the-block/how-long-does-it-to-mine-1-bitcoin-btc/">https://www.btcwires.com/round-the-block/how-long-does-it-to-mine-1-bitcoin-btc/</a>
+            <a href="https://www.packtpub.com/application-development/learn-javascript-build-your-own-blockchain-video">https://www.packtpub.com/application-development/learn-javascript-build-your-own-blockchain-video</a>
+            <a href="https://en.bitcoin.it/wiki/Mining">https://en.bitcoin.it/wiki/Mining</a>
+            <a href="https://www.amazon.com/dp/B0785WDHS3">https://www.amazon.com/dp/B0785WDHS3 (Highly recommended)</a></p>
+    </main>
+    <script>
+
+        let isToggle = true;
+        function toggleSidebar(val){
+            isToggle = val | !isToggle;
+            if(!isToggle){
+                document.getElementsByClassName('sidebar')[0].style.transform = 'translateX(-100%)';
+                document.getElementsByClassName('sidebar')[0].style.WebkitTransform = 'translateX(-100%)';
+                document.getElementsByClassName('sidebar')[0].style.msTransform = 'translateX(-100%)';
+                 document.getElementsByClassName('content')[0].style.marginLeft = '0';
+                 document.getElementsByClassName('content')[0].style.padding = '50px 15px';
+            }else{
+                document.getElementsByClassName('sidebar')[0].style.left = 'translateX(0)';
+                document.getElementsByClassName('sidebar')[0].style.WebkitTransform = 'translateX(0)';
+                document.getElementsByClassName('sidebar')[0].style.msTransform = 'translateX(0)';
+                   document.getElementsByClassName('content')[0].style.marginLeft = '280px';
+                 document.getElementsByClassName('content')[0].style.padding = '50px 40px';
+            }
+        }
+        
+        document.getElementById('hamburger').addEventListener('click',function(){toggleSidebar()})
+        
+        window.matchMedia("(max-width: 700px)").addListener(x=>{
+            if(x.matches){
+                toggleSidebar(false);
+            }
+                else toggleSidebar(true);
+        })
+    </script>
+</body></html>
