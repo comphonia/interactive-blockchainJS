@@ -1,4 +1,5 @@
 {
 	"name": "alchemy",
-	"description" : "a blockchain implementation"
+	"description" : "a blockchain implementation",
+	"template" : "static"
 }
