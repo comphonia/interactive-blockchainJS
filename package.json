@@ -1,5 +1,5 @@
 {
 	"name": "alchemy",
 	"description" : "a blockchain implementation",
-	"template" : "static"
+	"template" : "parcel"
 }
