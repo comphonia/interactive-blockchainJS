@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Bioshare Documentation | Comphonia</title>
@@ -11,11 +12,13 @@
     <script src="highlight/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
+
     </script>
     <style>
         code {
             font-size: 0.8em;
         }
+
     </style>
 </head>
 
@@ -38,7 +41,7 @@
                 <div></div>
             </div>
             <h2 style=" text-align: center; color: #fff;">Bioshare</h2>
-            <div style="color:#fff">docs</div>
+            <a href="https://comphonia.com/playground/apps/bioshare" style="background-color: #D5E9E2; padding: 5px; color: #000; border-radius: 5px">Open App</a>
         </div>
         <!--Content Start-->
         <h1>Implementing blockchain programmatically</h1>
@@ -208,6 +211,14 @@ such as the current time, sender , receiver and amount to start a transaction */
 demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Alice', 'wallet-Bob', 50))
 
         </code></pre>
+
+        <h2><a id="References_43"></a>Resources</h2>
+        <p style="margin-bottom: 55px; font-size: 0.9em">
+            <a href="https://github.com/comphonia/interactive-blockchainJS">Alchemy Repository</a>
+             <a href="https://github.com/comphonia/interactive-blockchainJS/tree/nsf-update">Bioshare Repository</a>
+             <a href="https://www.ethereum.org/">Ethereum</a>
+             </p>
+        <div style="height: 100px;"></div>
         <!--Content End-->
     </main>
     <script>
@@ -239,5 +250,8 @@ demoCoin.createTransaction(new Transaction(Date.now(), 'wallet-Alice', 'wallet-B
                 toggleSidebar(false);
             } else toggleSidebar(true);
         })
+
     </script>
-</body></html>
+</body>
+
+</html>
