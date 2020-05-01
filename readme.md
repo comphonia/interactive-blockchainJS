@@ -1,7 +1,7 @@
 # Bioshare - Blockchain Implementation
 
 Version 1 - [Alchemy](https://comphonia.com/playground/apps/alchemy/)
-Version 2 - [Bioshare](https://comphonia.com/playground/apps/alchemy/)
+Version 2 - [Bioshare](https://comphonia.com/playground/apps/bioshare/)
 
 > All updates below are for version 2.
 
